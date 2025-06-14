@@ -38,9 +38,10 @@ const NavBar = () => {
             className={`nav-item dropdown ${
               openDropdown === "about" ? "open" : ""
             }`}
-            onClick={() => toggleDropdown("about")}
           >
-            <span className="nav-link">About</span>
+            <span className="nav-link" onClick={() => toggleDropdown("about")}>
+              About
+            </span>
             <ul className="dropdown-menu">
               <li>
                 <Link
@@ -86,9 +87,13 @@ const NavBar = () => {
             className={`nav-item dropdown ${
               openDropdown === "ministries" ? "open" : ""
             }`}
-            onClick={() => toggleDropdown("ministries")}
           >
-            <span className="nav-link">Ministries</span>
+            <span
+              className="nav-link"
+              onClick={() => toggleDropdown("ministries")}
+            >
+              Ministries
+            </span>
             <ul className="dropdown-menu">
               <li>
                 <Link
