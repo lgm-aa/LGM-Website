@@ -1,0 +1,62 @@
+/* src/pages/Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200&display=swap');
+
+.landing-page {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+  }
+  
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    height: auto;
+
+    color: #000000;
+    
+    padding: 0 1rem;
+  }
+
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.50rem;
+    margin-bottom: 2rem;
+    max-width: 1000px;
+  }
+  
+  .hero button {
+    background-color: #0072ce; /* Michigan-themed blue */
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+  }
+  
+  .hero button:hover {
+    background-color: #005a9c;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+  }
+  
