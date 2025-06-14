@@ -23,6 +23,7 @@ export default function Home() {
       <AnimatedSection>
         <LatestSermon></LatestSermon>
       </AnimatedSection>
+      <p>heheheh</p>
     </main>
   );
 }
