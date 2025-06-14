@@ -4,7 +4,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import { Link } from "react-router-dom"; // if you’re using react-router
 import LatestSermon from "../components/LatestSemon";
 
-import "../LGM.css";
+import "./Home.css";
 
 export default function Home() {
   return (
@@ -20,10 +20,7 @@ export default function Home() {
         </Link>
       </AnimatedSection>
 
-      <AnimatedSection>
-        <LatestSermon></LatestSermon>
-      </AnimatedSection>
-      <p>heheheh</p>
+      <LatestSermon />
     </main>
   );
 }

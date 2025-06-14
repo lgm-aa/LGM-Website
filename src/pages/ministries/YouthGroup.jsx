@@ -9,13 +9,7 @@ export default function YouthGroup() {
       <AnimatedSection className="hero ministry-title" delay={100}>
         <h3>Youth Group</h3>
       </AnimatedSection>
-      {/* <AnimatedSection className="hero" delay={150}>
-        <h2>
-          “Let no one despise you for your youth, but set the believers an
-          example in speech, in conduct, in love, in faith, in purity.” (1
-          Timothy 4:12)
-        </h2>
-      </AnimatedSection> */}
+
       <div className="our-story-wrapper">
         <div className="our-story-text">
           <AnimatedSection className="hero" delay={300}>

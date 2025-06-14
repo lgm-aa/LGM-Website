@@ -1,62 +1,166 @@
-/* src/pages/Home.css */
+/* -----------------------------------
+   Font + Base Layout
+----------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200&display=swap');
 
 .landing-page {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
-  }
-  
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: top;
-    height: auto;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+}
 
-    color: #000000;
-    
-    padding: 0 1rem;
-  }
+/* -----------------------------------
+   Shared Hero Section
+----------------------------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  height: auto;
+  color: #000000;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
 
-  
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 200;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+}
+
+.hero button {
+  background-color: #0072ce;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+}
+
+.hero button:hover {
+  background-color: #005a9c;
+}
+
+/* Responsive hero sizing */
+@media (max-width: 600px) {
   .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.25rem;
   }
-  
+
   .hero p {
-    font-size: 1.50rem;
-    margin-bottom: 2rem;
-    max-width: 1000px;
-  }
-  
-  .hero button {
-    background-color: #0072ce; /* Michigan-themed blue */
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
   }
+}
+
+/* -----------------------------------
+   Ministry Title Styling
+----------------------------------- */
+.ministry-title h3 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+}
+
+.our-story-page .ministry-title {
+  margin-top: 3rem;
+}
+
+/* -----------------------------------
+   Wrapper Layout
+----------------------------------- */
+.our-story-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* -----------------------------------
+   Text Column
+----------------------------------- */
+.our-story-text {
+  flex: 1;
+  padding-right: 1rem;
+  text-align: left;
+}
+
+.our-story-text .hero {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.our-story-text .hero > *:first-child {
+  margin-top: 0;
+}
+
+/* -----------------------------------
+   Image Column
+----------------------------------- */
+.our-story-photo {
+  flex: 0 0 50%;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.our-story-photo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   
-  .hero button:hover {
-    background-color: #005a9c;
+}
+
+.our-story-photo iframe.responsive-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* -----------------------------------
+   Responsive Design
+----------------------------------- */
+@media (max-width: 768px) {
+  .our-story-wrapper {
+    flex-direction: column;
   }
-  
-  /* Responsive tweaks */
-  @media (max-width: 600px) {
-    .hero h1 {
-      font-size: 2.25rem;
-    }
-    .hero p {
-      font-size: 1rem;
-    }
+
+  .our-story-text,
+  .our-story-photo {
+    padding: 0;
   }
-  
+
+  .our-story-photo img {
+    height: auto;
+    object-fit: contain;
+  }
+}
