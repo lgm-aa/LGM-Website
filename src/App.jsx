@@ -14,6 +14,7 @@ import PostGrad from "./pages/ministries/PostGrad";
 import AdultFamily from "./pages/ministries/AdultFamily";
 import Sermons from "./pages/Sermons";
 import Bulletin from "./pages/Bulletin";
+import Donate from "./pages/Donate";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
         <Route path="/sermons" element={<Sermons />}></Route>
         <Route path="/bulletin" element={<Bulletin />}></Route>
+        <Route path="/donate" element={<Donate />}></Route>
       </Routes>
     </BrowserRouter>
   );

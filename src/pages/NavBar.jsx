@@ -1,95 +1,163 @@
-// src/pages/NavBar.jsx
-import React from "react";
-import { Link } from "react-router-dom"; // if you’re using react-router
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 
-const NavBar = () => (
-  <header className="site-header">
-    <div className="logo">
-      <Link to="/">
-        <img src="/lgm_logo.png" alt="Church Logo" />
-      </Link>
-    </div>
-    <nav className="navbar">
-      <ul className="nav-list">
-        <li className="nav-item dropdown">
-          <Link to="/about" className="nav-link">
-            About
-          </Link>
-          <ul className="dropdown-menu">
-            <li>
-              <Link to="/about/our_story" className="dropdown-item">
-                Our Story
-              </Link>
-            </li>
-            <li>
-              <Link to="/about/sunday_service" className="dropdown-item">
-                Sunday Service
-              </Link>
-            </li>
-            <li>
-              <Link to="/about/mission" className="dropdown-item">
-                Mission &amp; Vision
-              </Link>
-            </li>
-            <li>
-              <Link to="/about/team" className="dropdown-item">
-                Our Team
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item dropdown">
-          <Link to="/ministries" className="nav-link">
-            Ministries
-          </Link>
-          <ul className="dropdown-menu">
-            <li>
-              <Link to="/ministries/childrens" className="dropdown-item">
-                Children's
-              </Link>
-            </li>
-            <li>
-              <Link to="/ministries/youth_group" className="dropdown-item">
-                Youth Group
-              </Link>
-            </li>
-            <li>
-              <Link to="/ministries/campus" className="dropdown-item">
-                Campus
-              </Link>
-            </li>
-            <li>
-              <Link to="/ministries/post_grad" className="dropdown-item">
-                Post-Grad
-              </Link>
-            </li>
-            <li>
-              <Link to="/ministries/adult_family" className="dropdown-item">
-                Adult / Family
-              </Link>
-            </li>
-          </ul>
-        </li>
+const NavBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-        <li className="nav-item">
-          <Link to="/sermons" className="nav-link">
-            Sermons
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/bulletin" className="nav-link">
-            Bulletin
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/donate" className="nav-link donate">
-            Donate
-          </Link>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const toggleDropdown = (key) => {
+    setOpenDropdown((prev) => (prev === key ? null : key));
+  };
+
+  return (
+    <header className="site-header">
+      <div className="logo">
+        <Link to="/" onClick={closeMenu}>
+          <img src="/lgm_logo.png" alt="Church Logo" />
+        </Link>
+
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+      </div>
+
+      <nav className={`navbar ${menuOpen ? "open" : ""}`}>
+        <ul className="nav-list">
+          {/* About Dropdown */}
+          <li
+            className={`nav-item dropdown ${
+              openDropdown === "about" ? "open" : ""
+            }`}
+            onClick={() => toggleDropdown("about")}
+          >
+            <span className="nav-link">About</span>
+            <ul className="dropdown-menu">
+              <li>
+                <Link
+                  to="/about/our_story"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about/sunday_service"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Sunday Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about/mission"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Mission & Vision
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about/team"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Our Team
+                </Link>
+              </li>
+            </ul>
+          </li>
+
+          {/* Ministries Dropdown */}
+          <li
+            className={`nav-item dropdown ${
+              openDropdown === "ministries" ? "open" : ""
+            }`}
+            onClick={() => toggleDropdown("ministries")}
+          >
+            <span className="nav-link">Ministries</span>
+            <ul className="dropdown-menu">
+              <li>
+                <Link
+                  to="/ministries/childrens"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Children's
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ministries/youth_group"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Youth Group
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ministries/campus"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Campus
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ministries/post_grad"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Post-Grad
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ministries/adult_family"
+                  className="dropdown-item"
+                  onClick={closeMenu}
+                >
+                  Adult / Family
+                </Link>
+              </li>
+            </ul>
+          </li>
+
+          {/* Static Links */}
+          <li className="nav-item">
+            <Link to="/sermons" className="nav-link" onClick={closeMenu}>
+              Sermons
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/bulletin" className="nav-link" onClick={closeMenu}>
+              Bulletin
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/donate" className="nav-link donate" onClick={closeMenu}>
+              Donate
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default NavBar;

@@ -1,0 +1,86 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  height: auto;
+  color: #000000;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.donation-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* still valid */
+  padding: 1rem 1.25rem;
+  max-width: 600px; /* shrink width to eliminate unused space */
+  margin: 1rem auto;
+  gap: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.donation-text {
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: 'Raleway', sans-serif;
+  white-space: nowrap; /* keep single-line if possible */
+  text-align: center;
+}
+
+.donation-text a {
+  color: #0072ce;
+  text-decoration: none;
+}
+
+.donation-qr {
+  flex: 0 0 auto;
+}
+
+.donation-qr img {
+  width: 200; /* up from 100px */
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.qr.zelle {
+  width: 280px;
+  height: 280px;
+  /* max-height: 180px; */
+  object-fit: contain;
+}
+
+
+/* Stack cards on mobile */
+@media (max-width: 768px) {
+  .donation-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .donation-qr {
+    flex: 0 0 auto;
+    margin-left: 0.5rem; /* reduced spacing */
+}
+
+
+  .donation-qr img {
+    width: 160px;
+  }
+}

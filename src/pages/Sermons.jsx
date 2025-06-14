@@ -1,6 +1,6 @@
 import React from "react";
 // import AnimatedSection from "../components/AnimatedSection";
-import LatestSermon from "../components/LatestSemon";
+import LatestSermon from "../components/LatestSermon";
 
 const Sermons = () => <LatestSermon></LatestSermon>;
 
