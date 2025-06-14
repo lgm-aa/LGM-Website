@@ -8,12 +8,21 @@ export default function useLatestSermon() {
   useEffect(() => {
     async function fetchSermon() {
       try {
+        console.log("🔄 Fetching latest sermon...");
         const res = await fetch("/api/latest-sermon");
-        if (!res.ok) throw new Error("Failed to fetch sermon");
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(
+            `Fetch failed: ${res.status} ${res.statusText} - ${errorText}`
+          );
+        }
+
         const data = await res.json();
+        console.log("✅ Sermon fetched:", data);
         setSermon(data);
       } catch (err) {
-        console.error("Failed to fetch latest sermon:", err);
+        console.error("❌ Failed to fetch latest sermon:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -23,6 +32,5 @@ export default function useLatestSermon() {
     fetchSermon();
   }, []);
 
-  //   console.log(sermon);
   return { sermon, loading, error };
 }

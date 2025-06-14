@@ -3,6 +3,7 @@ import React from "react";
 import AnimatedSection from "../components/AnimatedSection";
 import { Link } from "react-router-dom"; // if you’re using react-router
 import LatestSermon from "../components/LatestSermon";
+import Livestream from "../components/Livestream";
 
 import "./Home.css";
 
@@ -20,19 +21,33 @@ export default function Home() {
         </Link>
       </AnimatedSection>
 
-      <AnimatedSection>
-        <div class="iframe-container">
-          <iframe
-            width="768"
-            height="432"
-            src="https://www.youtube.com/embed/live_stream?channel=UCFN3i5-SUCJctC_h5hMiBBw&autoplay=1"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
+      <AnimatedSection className="hero" delay={100}>
+        <h1>Sunday Service</h1>
+        <p>
+          Join us for snacks and fellowship at 12:45 pm. Service starts at 1:30
+          pm in the KUMCAA building, next door to our previous building
+        </p>
+
+        <Link to="/about/sunday_service" className="dropdown-item">
+          <button>Learn More</button>
+        </Link>
+
+        <div className="our-story-wrapper">
+          <div className="our-story-photo">
+            <img src="/KM_EntranceA.png"></img>
+          </div>
+
+          <div className="our-story-photo">
+            <img src="/KM_EntranceB.png"></img>
+          </div>
         </div>
       </AnimatedSection>
 
-      <LatestSermon />
+      <AnimatedSection className="hero" delay={100}>
+        <h1>Join us on Youtube!</h1>
+        <Livestream />
+        <LatestSermon />
+      </AnimatedSection>
     </main>
   );
 }
