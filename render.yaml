@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lgm-website
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: YOUTUBE_API_KEY
+        value: AIzaSyBwpGY4D8V2aDmTFDd7lrbfUxzv7SQPTbU
