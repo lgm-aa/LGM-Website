@@ -13,13 +13,13 @@ const PORT = process.env.PORT || 5001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static frontend files from Vite build
-app.use(express.static(path.join(__dirname, "../dist")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../dist")));
 
-// Handle client-side routing (e.g., React Router)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/index.html"));
-});
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist/index.html"));
+  });
+}
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCFN3i5-SUCJctC_h5hMiBBw"; // Living Grace Ministry
