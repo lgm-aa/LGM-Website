@@ -1,11 +1,25 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import registerLatestPdfRoute from "../src/api/latest-pdf.js";
 
 dotenv.config();
 
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
+
+// Support for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static frontend files from Vite build
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Handle client-side routing (e.g., React Router)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCFN3i5-SUCJctC_h5hMiBBw"; // Living Grace Ministry
@@ -39,7 +53,6 @@ app.get("/api/latest-sermon", async (req, res) => {
   try {
     const now = Date.now();
 
-    // ✅ Serve from cache if valid
     if (cachedSermon && cachedAt && now - cachedAt < CACHE_DURATION_MS) {
       console.log("✅ Serving cached sermon");
       return res.json(cachedSermon);
@@ -96,7 +109,6 @@ app.get("/api/latest-sermon", async (req, res) => {
       publishedAt: uploadedVideo.snippet.publishedAt,
     };
 
-    // ✅ Store in cache
     cachedSermon = result;
     cachedAt = now;
 
