@@ -6,7 +6,7 @@ import OurStory from "./pages/about/OurStory";
 import SundayService from "./pages/about/SundayService";
 import MissionVision from "./pages/about/MissionVision";
 import Team from "./pages/about/Team";
-import Ministries from "./pages/ministries/ministries";
+import Ministries from "./pages/ministries/Ministries";
 import Childrens from "./pages/ministries/Childrens";
 import YouthGroup from "./pages/ministries/YouthGroup";
 import Campus from "./pages/ministries/Campus";
