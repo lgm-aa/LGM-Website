@@ -8,7 +8,11 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: "https://livinggraceministry.onrender.com" // your frontend URL
+}));
+
 const PORT = process.env.PORT || 5001;
 
 // Support for __dirname in ES modules
