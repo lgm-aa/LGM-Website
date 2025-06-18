@@ -5,11 +5,13 @@ export default function useLatestSermon() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const apiBase = import.meta.env.VITE_API_BASE || ""; // fallback for local dev
+
   useEffect(() => {
     async function fetchSermon() {
       try {
         console.log("🔄 Fetching latest sermon...");
-        const res = await fetch("/api/latest-sermon");
+        const res = await fetch(`${apiBase}/api/latest-sermon`);
 
         if (!res.ok) {
           const errorText = await res.text();
@@ -30,7 +32,7 @@ export default function useLatestSermon() {
     }
 
     fetchSermon();
-  }, []);
+  }, [apiBase]);
 
   return { sermon, loading, error };
 }

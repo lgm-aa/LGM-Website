@@ -3,8 +3,13 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import registerLatestPdfRoute from "../src/api/latest-pdf.js";
+import cors from "cors";
+app.use(cors());
+
 
 dotenv.config();
+
+
 
 const app = express();
 const PORT = process.env.PORT || 5001;

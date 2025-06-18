@@ -7,6 +7,7 @@ let cachedPdf = null;
 let cachedAt = null;
 const CACHE_DURATION_MS = 60 * 60 * 1000; // 1 hour
 
+
 export default function registerLatestPdfRoute(app, API_KEY) {
   app.get("/api/latest-pdf", async (req, res) => {
     try {
