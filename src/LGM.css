@@ -115,15 +115,16 @@
   margin-top: 0.25rem;
 }
 
-
 /* -----------------------------------
    Image Column
 ----------------------------------- */
 .our-story-photo {
+  flex: 0 0 50%;
+  max-width: 50%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 1.5rem 0;
+  align-items: flex-start; /* ✅ aligns top of image with top of text */
+  margin: 0; /* removes bottom margin */
 }
 
 .our-story-photo img {
@@ -170,12 +171,13 @@
   }
 
   .our-story-text .hero {
-    text-align: justify;
+    text-align: center; /* ✅ center text on mobile */
   }
 
   .our-story-photo {
     max-width: 100%;
     margin-top: 1.25rem;
+    align-items: center; /* center image vertically on mobile */
   }
 
   .our-story-photo img {

@@ -1,38 +1,139 @@
 import { useEffect, useState } from "react";
 
-export default function useLatestSermon() {
+const API_KEY = "AIzaSyBwpGY4D8V2aDmTFDd7lrbfUxzv7SQPTbU";
+const CHANNEL_ID = "UCFN3i5-SUCJctC_h5hMiBBw";
+const CACHE_KEY_SERMON = "latestSermonData";
+const CACHE_KEY_TIMESTAMP = "latestSermonTimestamp";
+const CACHE_DURATION_MS = 1000 * 60 * 60; // 1 hour
+
+function getLastSundayTimeRange() {
+  const now = new Date();
+  const day = now.getDay(); // Sunday = 0
+  const daysSinceSunday = day === 0 ? 0 : day;
+  const sunday = new Date(now);
+  sunday.setDate(now.getDate() - daysSinceSunday);
+  sunday.setHours(0, 0, 0, 0);
+
+  const sundayEnd = new Date(sunday);
+  sundayEnd.setHours(23, 59, 59, 999);
+
+  console.log("📅 Sunday Time Range:");
+  console.log("↪️ publishedAfter:", sunday.toISOString());
+  console.log("↩️ publishedBefore:", sundayEnd.toISOString());
+
+  return {
+    publishedAfter: sunday.toISOString(),
+    publishedBefore: sundayEnd.toISOString(),
+  };
+}
+
+function getPreviousSundayISOString() {
+  const now = new Date();
+  const day = now.getDay(); // Sunday = 0
+  const diff = day === 0 ? 7 : day; // If today is Sunday, go back a full week
+  const sunday = new Date(now);
+  sunday.setDate(now.getDate() - diff);
+  sunday.setHours(0, 0, 0, 0);
+  return sunday.toISOString();
+}
+
+const useLatestSermon = () => {
   const [sermon, setSermon] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const apiBase = import.meta.env.VITE_API_BASE || ""; // fallback for local dev
-
   useEffect(() => {
-    async function fetchSermon() {
-      try {
-        console.log("🔄 Fetching latest sermon...");
-        const res = await fetch(`${apiBase}/api/latest-sermon`);
+    const fetchLatestSermon = async () => {
+      const cachedSermon = localStorage.getItem(CACHE_KEY_SERMON);
+      const cachedTime = localStorage.getItem(CACHE_KEY_TIMESTAMP);
+      const isFresh =
+        cachedSermon &&
+        cachedTime &&
+        Date.now() - parseInt(cachedTime) < CACHE_DURATION_MS;
 
-        if (!res.ok) {
-          const errorText = await res.text();
-          throw new Error(
-            `Fetch failed: ${res.status} ${res.statusText} - ${errorText}`
-          );
+      if (isFresh) {
+        const parsed = JSON.parse(cachedSermon);
+        console.log("⚡ Using cached sermon:", parsed);
+        setSermon(parsed);
+        return;
+      }
+
+      console.log("🚀 Fetching latest sermon from YouTube...");
+      try {
+        const { publishedAfter, publishedBefore } = getLastSundayTimeRange();
+
+        const searchUrl =
+          `https://www.googleapis.com/youtube/v3/search?` +
+          `key=${API_KEY}` +
+          `&channelId=${CHANNEL_ID}` +
+          `&part=snippet` +
+          `&order=date` +
+          `&maxResults=5` +
+          `&type=video` +
+          `&publishedAfter=${publishedAfter}`;
+        // `&publishedBefore=${publishedBefore}`;
+
+        console.log("🔍 YouTube Search URL:", searchUrl);
+
+        const searchRes = await fetch(searchUrl);
+        const searchData = await searchRes.json();
+
+        console.log("📦 YouTube Search Response:", searchData);
+
+        const videoIds = searchData.items
+          .map((item) => item.id.videoId)
+          .filter(Boolean)
+          .join(",");
+
+        console.log("🎯 Extracted video IDs:", videoIds);
+
+        if (!videoIds) {
+          console.warn("⚠️ No videos found for last Sunday.");
+          setError("No videos found on last Sunday.");
+          return;
         }
 
-        const data = await res.json();
-        console.log("✅ Sermon fetched:", data);
-        setSermon(data);
+        const videoDetailUrl =
+          `https://www.googleapis.com/youtube/v3/videos?` +
+          `key=${API_KEY}&id=${videoIds}&part=snippet`;
+
+        console.log("📥 YouTube Video Details URL:", videoDetailUrl);
+
+        const videosRes = await fetch(videoDetailUrl);
+        const videosData = await videosRes.json();
+
+        console.log("📦 Video Details Response:", videosData);
+
+        const uploadedVideo = videosData.items.find(
+          (video) => video.snippet.liveBroadcastContent === "none"
+        );
+
+        if (!uploadedVideo) {
+          console.warn("⚠️ No non-livestream videos found.");
+          setError("No uploaded (non-livestream) sermon videos found.");
+          return;
+        }
+
+        const sermonData = {
+          videoId: uploadedVideo.id,
+          title: uploadedVideo.snippet.title,
+          publishedAt: getPreviousSundayISOString(),
+        };
+
+        console.log("✅ Final Sermon Object:", sermonData);
+
+        setSermon(sermonData);
+        localStorage.setItem(CACHE_KEY_SERMON, JSON.stringify(sermonData));
+        localStorage.setItem(CACHE_KEY_TIMESTAMP, Date.now().toString());
       } catch (err) {
-        console.error("❌ Failed to fetch latest sermon:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.error("❌ YouTube fetch failed:", err);
+        setError("Failed to fetch sermon");
       }
-    }
+    };
 
-    fetchSermon();
-  }, [apiBase]);
+    fetchLatestSermon();
+  }, []);
 
-  return { sermon, loading, error };
-}
+  return { sermon, error };
+};
+
+export default useLatestSermon;

@@ -1,7 +1,7 @@
 import React from "react";
 // import AnimatedSection from "../components/AnimatedSection";
-import LatestPDF from "../components/LatestPDF";
+import LatestBulletin from "../components/LatestBulletin";
 
-const Bulletin = () => <LatestPDF></LatestPDF>;
+const Bulletin = () => <LatestBulletin></LatestBulletin>;
 
 export default Bulletin;
