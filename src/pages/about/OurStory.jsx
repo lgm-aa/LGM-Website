@@ -1,8 +1,10 @@
 // src/pages/About/OurStory.jsx
 import React from "react";
 import AnimatedSection from "../../components/AnimatedSection";
+import OurStoryTemplate from "../../templates/OurStoryTemplate";
 import "../../LGM.css";
-export default function YouthGroup() {
+
+export default function OurStory() {
   return (
     <main className="our-story-page landing-page">
       <AnimatedSection className="hero ministry-title" delay={100}>
@@ -11,52 +13,27 @@ export default function YouthGroup() {
           discipleship through grace."
         </h3>
       </AnimatedSection>
-      {/* <AnimatedSection className="hero" delay={150}>
-        <h2>
-          “Let no one despise you for your youth, but set the believers an
-          example in speech, in conduct, in love, in faith, in purity.” (1
-          Timothy 4:12)
-        </h2>
-      </AnimatedSection> */}
-      <div className="our-story-wrapper">
-        <div className="our-story-text">
-          <AnimatedSection className="hero" delay={100}>
-            <p>
-              We are a ministry that strives to live out grace practically in
-              the Ann Arbor community. In the world today, grace is often in
-              short supply. Even in churches, we do not always reflect the
-              radical grace of Jesus Christ that would welcome ANYONE to come
-              and that would call us to value even the least amongst us. Living
-              Grace Ministry is a community where we want to see true
-              transformation so that we can build God’s kingdom, and we
-              encourage people to do so through love, forgiveness, and grace,
-              not through judgment or guilt.
-            </p>
-          </AnimatedSection>
-        </div>
 
-        <div className="our-story-photo">
-          <AnimatedSection className="hero" delay={100}>
-            <img
-              src="/lgm_easter.jpg" // Replace with your actual image path
-              alt="Living Grace Ministry"
-            />
-          </AnimatedSection>
-        </div>
-      </div>
+      <OurStoryTemplate
+        text={
+          <p>
+            We are a ministry that strives to live out grace practically in the
+            Ann Arbor community. In the world today, grace is often in short
+            supply. Even in churches, we do not always reflect the radical grace
+            of Jesus Christ that would welcome ANYONE to come and that would
+            call us to value even the least amongst us. Living Grace Ministry is
+            a community where we want to see true transformation so that we can
+            build God’s kingdom, and we encourage people to do so through love,
+            forgiveness, and grace, not through judgment or guilt.
+          </p>
+        }
+        image={{ src: "/lgm_easter.jpg", alt: "Living Grace Ministry" }}
+      />
 
-      <div className="our-story-wrapper">
-        <div className="our-story-photo">
-          <AnimatedSection className="hero" delay={100}>
-            <img
-              src="/ant.jpg" // Replace with your actual image path
-              alt="Living Grace Ministry"
-            />
-          </AnimatedSection>
-        </div>
-
-        <div className="our-story-text">
-          <AnimatedSection className="hero" delay={100}>
+      <OurStoryTemplate
+        reverse
+        text={
+          <>
             <p>
               Living Grace Ministry is a United Methodist Church. Formerly, the
               English ministry of Korean United Methodist Church of Ann Arbor,
@@ -65,15 +42,15 @@ export default function YouthGroup() {
               all Korean, and we welcome anyone to join us for fellowship and
               worship!
             </p>
-
             <p>
               We are Christ-centered, outreach and mission-minded, and dedicated
               to training and equipping disciples and leaders. At LGM, all are
               welcome!
             </p>
-          </AnimatedSection>
-        </div>
-      </div>
+          </>
+        }
+        image={{ src: "/ant.jpg", alt: "Living Grace Ministry" }}
+      />
     </main>
   );
 }

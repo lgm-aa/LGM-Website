@@ -1,6 +1,4 @@
-// src/components/MinistryTemplate.jsx
-import React from "react";
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../components/AnimatedSection";
 import "../LGM.css";
 
 export default function MinistryTemplate({

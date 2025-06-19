@@ -1,4 +1,4 @@
-import MinistryTemplate from "../../components/MinistryTemplate";
+import MinistryTemplate from "../../templates/MinistryTemplate";
 
 export default function Campus() {
   return (

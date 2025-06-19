@@ -1,6 +1,6 @@
 // src/pages/About/OurStory.jsx
 import React from "react";
-import MinistryTemplate from "../../components/MinistryTemplate";
+import MinistryTemplate from "../../templates/MinistryTemplate";
 
 export default function YouthGroup() {
   return (

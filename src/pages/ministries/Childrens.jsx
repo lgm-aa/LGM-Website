@@ -1,7 +1,6 @@
 // src/pages/About/Childrens.jsx
 import React from "react";
-import MinistryTemplate from "../../components/MinistryTemplate";
-
+import MinistryTemplate from "../../templates/MinistryTemplate";
 export default function Childrens() {
   return (
     <MinistryTemplate
