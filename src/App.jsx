@@ -13,7 +13,7 @@ import Campus from "./pages/ministries/Campus";
 import PostGrad from "./pages/ministries/PostGrad";
 import AdultFamily from "./pages/ministries/AdultFamily";
 import Sermons from "./pages/Sermons";
-import Bulletin from "./pages/Bulletin";
+import Bulletin from "./pages/Bulletin/Bulletin";
 import Donate from "./pages/Donate";
 
 function App() {
