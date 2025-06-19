@@ -2,7 +2,8 @@
 
 /* Site-wide header wrapper */
 .site-header {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   position: sticky;
   top: 0;
   background: #ffffff;
@@ -178,5 +179,10 @@
 
   .dropdown-item {
     padding-left: 1.5rem;
+  }
+
+  .site-header {
+    width: 100%;
+    margin-left: 0;
   }
 }

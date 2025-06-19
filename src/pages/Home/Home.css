@@ -1,0 +1,152 @@
+/* -----------------------------------
+   Font + Base Layout
+----------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.landing-page {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+/* -----------------------------------
+   Content Block
+----------------------------------- */
+.content-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  text-align: center;
+  color: #000;
+}
+
+.content-block h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 200;
+}
+
+.content-block p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+}
+
+.content-block button {
+  background-color: #0072ce;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 100;
+  font-family: 'Raleway', sans-serif;
+}
+
+.content-block button:hover {
+  background-color: #005a9c;
+}
+
+/* -----------------------------------
+   Section With Background
+----------------------------------- */
+.section-with-background {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-image: url('/lgm_easter.jpg');
+  background-size: cover;
+  background-position: center 70%;
+  background-repeat: no-repeat;
+  padding: 3rem 1rem;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  animation: backgroundZoomIn 1.5s ease forwards;
+  overflow: hidden;
+}
+
+.section-with-background .content-block {
+  color: white;
+}
+
+.section-with-background .content-block h1,
+.section-with-background .content-block p {
+  color: white;
+}
+
+.section-with-background .content-block button {
+  background-color: white;
+  color: #000;
+  font-weight: 400;
+}
+
+.section-with-background .content-block button:hover {
+  background-color: #eee;
+}
+
+/* Dark overlay */
+.section-with-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section-with-background > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Background animation */
+@keyframes backgroundZoomIn {
+  0% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* -----------------------------------
+   Responsive Design
+----------------------------------- */
+@media (max-width: 768px) {
+  .content-block h1 {
+    font-size: 2rem;
+  }
+
+  .content-block p {
+    font-size: 1rem;
+  }
+
+  .content-block button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .section-with-background {
+    width: 100%;
+    margin-left: 0;
+  }
+}
