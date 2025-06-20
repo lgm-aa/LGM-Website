@@ -7,6 +7,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -19,6 +21,11 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
+}
+
+.button-link {
+  all: unset;
+  display: inline-block;
 }
 
 /* -----------------------------------
@@ -62,6 +69,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.content-block.only-button {
+  margin-top: 22rem;
+}
+
 .content-block button:hover {
   background-color: #005a9c;
 }
@@ -73,15 +84,24 @@ body {
   position: relative;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
-  background-image: url('/lgm_easter.jpg');
   background-size: cover;
   background-position: center 70%;
   background-repeat: no-repeat;
   padding: 3rem 1rem;
   color: white;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.85);
   animation: backgroundZoomIn 1.5s ease forwards;
   overflow: hidden;
+  will-change: transform;
+}
+
+.section-with-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .section-with-background .content-block {
@@ -97,20 +117,12 @@ body {
   background-color: white;
   color: #000;
   font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .section-with-background .content-block button:hover {
-  background-color: #eee;
-}
-
-/* Dark overlay */
-.section-with-background::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 0;
-  pointer-events: none;
+  background-color: #0072ce;
+  color: white;
 }
 
 .section-with-background > * {
@@ -118,7 +130,9 @@ body {
   z-index: 1;
 }
 
-/* Background animation */
+/* -----------------------------------
+   Background Animation
+----------------------------------- */
 @keyframes backgroundZoomIn {
   0% {
     transform: scale(1.25);
@@ -132,21 +146,14 @@ body {
    Responsive Design
 ----------------------------------- */
 @media (max-width: 768px) {
-  .content-block h1 {
-    font-size: 2rem;
-  }
-
-  .content-block p {
-    font-size: 1rem;
-  }
-
   .content-block button {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
   }
 
   .section-with-background {
     width: 100%;
     margin-left: 0;
+    clip-path: inset(0);
   }
 }

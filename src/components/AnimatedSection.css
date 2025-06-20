@@ -1,7 +1,7 @@
 .animated-section {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   
   .animated-section.entered {
