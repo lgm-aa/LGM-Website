@@ -69,8 +69,8 @@ const useLatestSermon = () => {
           `&order=date` +
           `&maxResults=5` +
           `&type=video` +
-          `&publishedAfter=${publishedAfter}`;
-        // `&publishedBefore=${publishedBefore}`;
+          `&publishedAfter=${publishedAfter}` +
+          `&publishedBefore=${publishedBefore}`;
 
         console.log("🔍 YouTube Search URL:", searchUrl);
 
@@ -87,11 +87,17 @@ const useLatestSermon = () => {
         console.log("🎯 Extracted video IDs:", videoIds);
 
         if (!videoIds) {
-          console.warn("⚠️ No videos found for last Sunday.");
-          setError("No videos found on last Sunday.");
+          console.warn(
+            "⚠️ No videos found for last Sunday. Falling back to channel."
+          );
+          setSermon({
+            videoId: null,
+            title: "Visit our YouTube Channel",
+            publishedAt: null,
+            fallbackUrl: "https://www.youtube.com/@LivingGraceMinistry",
+          });
           return;
         }
-
         const videoDetailUrl =
           `https://www.googleapis.com/youtube/v3/videos?` +
           `key=${API_KEY}&id=${videoIds}&part=snippet`;
@@ -103,20 +109,32 @@ const useLatestSermon = () => {
 
         console.log("📦 Video Details Response:", videosData);
 
-        const uploadedVideo = videosData.items.find(
-          (video) => video.snippet.liveBroadcastContent === "none"
+        const nonLivestreamVideos = videosData.items.filter(
+          (video) =>
+            video.snippet.liveBroadcastContent === "none" &&
+            !video.snippet.title.toLowerCase().includes("livestream")
         );
 
-        if (!uploadedVideo) {
-          console.warn("⚠️ No non-livestream videos found.");
-          setError("No uploaded (non-livestream) sermon videos found.");
+        if (nonLivestreamVideos.length === 0) {
+          console.warn(
+            "⚠️ No suitable sermon videos found. Falling back to channel."
+          );
+          setSermon({
+            videoId: null,
+            title: "Visit our YouTube Channel",
+            publishedAt: null,
+            fallbackUrl: "https://www.youtube.com/@LivingGraceMinistry",
+          });
           return;
         }
+
+        const uploadedVideo = nonLivestreamVideos[0];
 
         const sermonData = {
           videoId: uploadedVideo.id,
           title: uploadedVideo.snippet.title,
           publishedAt: getPreviousSundayISOString(),
+          fallbackUrl: "https://www.youtube.com/@LivingGraceMinistry",
         };
 
         console.log("✅ Final Sermon Object:", sermonData);
