@@ -4,7 +4,8 @@ import "./AnimatedSection.css";
 export default function AnimatedSection({
   children,
   className = "",
-  delay = 1000, // milliseconds before starting
+  delay = 1000,
+  as: Wrapper = "div", // allow optional custom element tag
 }) {
   const [entered, setEntered] = useState(false);
 
@@ -13,11 +14,9 @@ export default function AnimatedSection({
     return () => clearTimeout(t);
   }, [delay]);
 
-  return (
-    <section
-      className={`animated-section ${entered ? "entered" : ""} ${className}`}
-    >
-      {children}
-    </section>
-  );
+  const combinedClassName = `animated-section ${
+    entered ? "entered" : ""
+  } ${className}`.trim();
+
+  return <Wrapper className={combinedClassName}>{children}</Wrapper>;
 }

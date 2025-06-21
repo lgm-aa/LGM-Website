@@ -13,7 +13,7 @@ export default function Home() {
         className="section-with-background"
         style={{ backgroundImage: "url('/lgm_easter.jpg')" }}
       >
-        <AnimatedSection className="content-block" delay={400}>
+        <AnimatedSection className="content-block" delay={400} as="div">
           <h1>Living Grace Ministry</h1>
           <p>
             Making a community of Jesus’s disciples who love like Jesus through
@@ -21,7 +21,11 @@ export default function Home() {
           </p>
         </AnimatedSection>
 
-        <AnimatedSection className="content-block only-button" delay={400}>
+        <AnimatedSection
+          className="content-block only-button"
+          delay={400}
+          as="div"
+        >
           <Link to="/about/our_story" className="button-link">
             <button>Learn More</button>
           </Link>
