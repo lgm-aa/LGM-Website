@@ -1,12 +1,30 @@
-# React + Vite
+<h1 align="center">Welcome to lgm-website 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.0-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/node-18.x-blue.svg" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> This project is a modern overhaul of the Living Grace Ministry website, originally built over 10 years ago. The new site is built using React and Vite, with a focus on speed, responsiveness, and ease of maintenance. It integrates directly with external services like YouTube and Google Drive through client-side API calls to dynamically display sermon videos and weekly bulletins. The redesign simplifies content updates while providing a clean and accessible user experience across devices.
 
-Currently, two official plugins are available:
+### 🏠 [Homepage](livinggraceminsitry.org)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ✨ [Demo](livinggraceministry.org)
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- node 18.x
+
+## Author
+
+👤 **Tae Hoon Kim & Living Grace Ministry**
+
+- Github: [@thkimsea43](https://github.com/thkimsea43)
+- LinkedIn: [@kimtaeh](https://linkedin.com/in/kimtaeh)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
