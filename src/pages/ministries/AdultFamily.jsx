@@ -19,7 +19,7 @@ export default function AdultFamily() {
               divorced, with kids or without, you are welcome to join us."
       contactName="Email Below"
       contactEmail="LGMAdultandFamilyMinistry@gmail.com"
-      imageSrc="/Children.jpeg"
+      imageSrc="/ministries.JPG"
     />
   );
 }

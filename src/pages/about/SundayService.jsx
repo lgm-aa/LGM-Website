@@ -44,10 +44,10 @@ export default function SundayService() {
               University of Michigan campus. We provide rides from campus—
               please contact our ride coordinator for more information.
             </p>
-            <h2>Contact: Matt Nho - sarah201671@gmail.com</h2>
+            <h2>Contact: Matt Nho - mnho@umich.edu</h2>
           </>
         }
-        image={{ src: "/sanc.jpg", alt: "Sanctuary at Living Grace Ministry" }}
+        image={{ src: "/rides.jpg", alt: "Sanctuary at Living Grace Ministry" }}
       />
     </main>
   );

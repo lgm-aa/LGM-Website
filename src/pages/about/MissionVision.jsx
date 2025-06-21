@@ -17,11 +17,11 @@ export default function MissionVision() {
             Thank you to everyone for your amazing support! We are continuing
             our support for the UMC churches in Central Asia throughout the
             year. Please send money through our normal channels (see offering
-            information), but please let Jason Um know if the money is meant for
-            Central Asia missions (jasonum@gmail.com), thanks!
+            information), but please let Jason Um <b>(jasonum@gmail.com)</b>{" "}
+            know if the money is meant for Central Asia missions , thanks!
           </p>
         }
-        image={{ src: "/sanc.jpg", alt: "Living Grace Ministry" }}
+        image={{ src: "/central_asia.jpg", alt: "Central Asia" }}
       />
     </main>
   );

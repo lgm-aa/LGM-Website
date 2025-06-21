@@ -11,6 +11,7 @@ export default function MinistryTemplate({
 }) {
   return (
     <main className="our-story-page landing-page ministry-page">
+      {/* <div className="debugCenterLine"></div> */}
       <AnimatedSection className="hero ministry-title" delay={100}>
         <h3>{title}</h3>
       </AnimatedSection>
