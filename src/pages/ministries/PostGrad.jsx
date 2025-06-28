@@ -17,7 +17,7 @@ export default function PostGrad() {
               you come check out Postgrad!"
       contactName="Ian Yu"
       contactEmail="9921ianyu@gmail.com"
-      imageSrc="/pg.jpg"
+      imageSrc="/post_grad.jpg"
     />
   );
 }
