@@ -1,7 +1,7 @@
 // src/pages/Bulletin.jsx
 import React from "react";
 import LatestBulletin from "../../components/LatestBulletin";
-import "./Bulletin.css"; // Adjust path if necessary
+import "./bulletin.css"; // Adjust path if necessary
 
 export default function Bulletin() {
   return (
